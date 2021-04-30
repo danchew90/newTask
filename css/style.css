@@ -8,8 +8,8 @@ body {
   font-size: 20px;
 }
 
-.js-gretting,
-.js-form {
+.gretting,
+.form {
   display: none;
 }
 .showing {

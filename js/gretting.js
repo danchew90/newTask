@@ -1,18 +1,30 @@
 const form = document.querySelector(".js-form"),
-      input = form.querySelector("input"),
-      gretting = document.querySelector(".js-gretting");
+    input = form.querySelector("input"),
+    gretting = document.querySelector(".js-gretting");
 
-const CURRENT_USER = "User_name";
-
-const SHOW_CN = "showing";
+const USER_LS = "currentUser",
+    SHOWING_CL = "showing";
 
 function saveName(text){
-    localStorage.setItem(CURRENT_USER,text);
+    localStorage.setItem(USER_LS, text);
 }
 
-function paintName(text){
-    form.classList.remove(SHOW_CN);
-    gretting.classList.add(SHOW_CN);
+function handleSubmit(event){
+    event.preventDefault();
+    const currentValue = input.value;
+    console.log(currentValue);
+    paintGretting(currentValue);
+    saveName(currentValue);
+}
+
+function askName(){
+    form.classList.add(SHOWING_CL);
+    form.addEventListener("submit", handleSubmit);
+}
+
+function paintGretting(text){
+    form.classList.remove(SHOWING_CL);
+    gretting.classList.add(SHOWING_CL);
     const date = new Date();
     const hour = date.getHours();
     const hour1 = hour-"12";
@@ -27,7 +39,7 @@ function paintName(text){
     } else if (hour < 14) {
         gretting.innerText = `It's an exciting lunch break ${text}!`;
     } else if (hour <18 ) {
-        gretting.innerText = `Now ${hour1}o'clock now, ${text}!`;
+        gretting.innerText = `Now ${hour1}o'clock now, ${text}`;
     } else if (hour <20 ) {
         gretting.innerText = `I hope you have a nice dinner! ${text}`;
     } else if (hour < 23) {
@@ -38,24 +50,12 @@ function paintName(text){
 
 }
 
-function handleSubmit(e){
-    e.preventDefault();
-    const currentValue = input.value;
-    paintName(currentValue);
-    saveName(currentValue);
-}
-
-function askName(){
-    form.classList.add(SHOW_CN);
-    form.addEventListener("submit",handleSubmit);
-}
-
 function loadName(){
-    const currentUser = localStorage.getItem(CURRENT_USER);
+    const currentUser = localStorage.getItem(USER_LS);
     if(currentUser === null){
-        askName()
+        askName();
     } else{
-        paintName();
+        paintGretting(currentUser);
     }
 }
 
@@ -65,3 +65,5 @@ function init(){
 }
 
 init();
+
+
