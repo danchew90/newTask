@@ -10,23 +10,38 @@
 </head>
 
 <body>
-    <div class="clockContainer">
-        <span>00:00</span>
+    <div class="box">
+        <header>
+            <div class="clockContainer">
+                <span>00:00</span>
+            </div>
+        </header>
+        <div class="nameBox">
+            <form class="js-form form">
+                <input type="text" placeholder="Type your name please...">
+            </form>
+            <span class="js-gretting gretting"></span>
+        </div>
+        <div class="todoBox">
+            <form class="todoForm">
+                <input type="text" placeholder="Type any to do list!!">
+            </form>
+            <div class="listBox">
+                <div class="pendingList">
+                    <h2>PENDING</h2>
+                    <ul class="pending"></ul>
+                </div>
+                <div class="finishedList">
+                    <h2>FINISHED</h2>
+                    <ul class="finished"></ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <form class="js-form form">
-        <input type="text" placeholder="Type your name please...">
-    </form>
-    <span class="js-gretting gretting"></span>
-    <form class="todoForm">
-        <input type="text" placeholder="Type any to do list!!">
-    </form>
-    <h2>PENDING</h2>
-    <ul class="pending"></ul>
-    <h2>FINISHED</h2>
-    <ul class="finished"></ul>
     <script src="js/clock.js"></script>
     <script src="js/gretting.js"></script>
     <script src="js/todo.js"></script>
+    <script src="js/bg.js"></script>
 </body>
 
 </html>
